@@ -2,24 +2,23 @@ const redisCache = require('../redis/Cache');
 
 /**
  * Calcula a fatorial.
- * @param {number} is a integer
- * @returns {number}
+ * @param number is a integer
+ * @returns number
  */
 module.exports.factorialCalc = (number) => {
-  return (number == 0)?1:number * factorialCalc(number-1);
-}
+  return (number === 0)?1:number * factorialCalc(number-1);
+};
 
 module.exports.cache = {
   /**
    *
    */
-  async show(req, res) {
+  show: async function (req, res) {
     const keyNumber = req.params.keyNumber;
     const key = `factorial:${keyNumber}`;
-    console.log(key);
 
     cache.exists(key, (err, reply) => {
-      if (reply===1) {
+      if (reply === 1) {
         console.log('Fonded in cache');
         responseCache(key, res);
       } else {
@@ -27,7 +26,7 @@ module.exports.cache = {
         const fat = factorialCalc(value);
       }
     });
-  }
+  },
 
   /**
    *
@@ -36,7 +35,7 @@ module.exports.cache = {
     cache.get('sorteio:last:megasena', (err, reply) => {
       res.send((err)?'ERROR':reply);
     });
-  }
+  },
 
   /**
    *
@@ -46,4 +45,4 @@ module.exports.cache = {
       res.send((err)?'ERROR':reply);
     });
   }
-}
+};
