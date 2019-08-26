@@ -13,13 +13,9 @@ const FactorialController = require('../controllers/FactorialController');
 routes.get("", (req, res) => {
     return res.send("Factorial with cache.");
 });
-routes.get("/factorial", (req, res) => {
-    return res.send("PEGA PORRA.");
-});
 // Factorial resource
+routes.get("/factorial", FactorialController.factorial.index);
 routes.get("/factorial/:keyNumber", FactorialController.factorial.show);
-routes.get("/factorial/ler", FactorialController.factorial.ler);
-routes.get("/factorial/escrever", FactorialController.factorial.escrever);
 
 /**
  * Exports

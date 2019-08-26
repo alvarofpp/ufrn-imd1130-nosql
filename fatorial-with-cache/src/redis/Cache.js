@@ -2,8 +2,8 @@ const redis = require('redis');
 
 
 module.exports = {
-  // Cache redis
-  cache: redis.createClient().on('connect', () => {
+  // Cliente cache redis
+  client: redis.createClient().on('connect', () => {
     console.log('Redis is ready');
   }).on('error', (e) => {
     console.log('Redis error', e);
@@ -12,9 +12,9 @@ module.exports = {
   /**
    *
    */
-  responseCache: function (key, res) {
-    this.cache.get(key, (err, reply) => {
-      this.cache.expire(key, 10, (err, reply) => {});
+  response: function (key, res) {
+    this.client.get(key, (err, reply) => {
+      this.client.expire(key, 10, (err, reply) => {});
       res.send((err)?'ERROR':`Fatorial: ${reply}`);
     });
   },
@@ -22,8 +22,8 @@ module.exports = {
   /**
    *
    */
-  updateCache: function(key, value, res) {
-    this.cache.set(key, value, (err, reply) => {
+  update: function(key, value, res) {
+    this.client.set(key, value, (err, reply) => {
       res.send((err)?'ERROR':`Fatorial: ${reply}`);
     });
   }
