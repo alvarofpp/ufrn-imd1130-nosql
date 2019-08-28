@@ -17,18 +17,40 @@ module.exports.factorial = {
    * @param res
    */
   index: function (req, res) {
+    // Variável com todas as fatoriais
+    var factorials = [];
+    // Pega todas as chaves de fatorial
     redisCache.client.keys('factorial:*', (err, keys) => {
       if (err) return console.log(err);
-      var resHtml = '<ul>';
+      // Se existir chaves
+      if (keys.length > 0) {
+        var p1 = new Promise(
+          function(resolve, reject) {
+            // Percorro todas as chaves
+            keys.forEach((item, index) => {
+              // Variável com a chave e valor da fatorial
+              redisCache.client.get(item, function (error, value) {
+                if (err) return console.log(err);
+                var factorial = {};
+                factorial['factorialKey'] = item;
+                factorial['factorialValue'] = value;
+                factorials.push(factorial);
+              });
 
-      for(var i = 0, len = keys.length; i < len; i++) {
-        resHtml += `<li>`;
-        resHtml += `<b>${keys[i]}</b>: `;
-        resHtml += redisCache.client.get(keys[i]);
-        resHtml += `</li>`;
+              if (index === (keys.length-1)) {
+                console.log(index, item, factorials);
+                resolve();
+              }
+            });
+          }
+        );
+        // Após a promise ser realizada
+        p1.then(() => {
+          res.json({data: factorials});
+        });
+      } else {
+        res.send('Não tem keys.');
       }
-      resHtml += `</ul>`;
-      res.send(resHtml);
     });
   },
 

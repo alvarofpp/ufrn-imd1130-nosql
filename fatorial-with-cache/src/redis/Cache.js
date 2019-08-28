@@ -9,6 +9,13 @@ module.exports = {
     console.log('Redis error', e);
   }),
 
+  getByKey: function (key, res) {
+    this.client.get(key, (err, reply) => {
+      this.client.expire(key, 10, (err, reply) => {});
+      res.append(reply);
+    });
+  },
+
   /**
    *
    */
