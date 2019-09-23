@@ -1,0 +1,24 @@
+{
+  "name": "redis-fatorial",
+  "version": "1.0.0",
+  "description": "Fatorial with cache (redis)",
+  "main": "server.js",
+  "keywords": [
+    "redis",
+    "fatorial"
+  ],
+  "author": {
+    "name": "Álvaro Ferreira Pires de Paiva",
+    "email": "alvarofepipa@gmail.com",
+    "url": "https://alvarofpp.github.io/"
+  },
+  "dependencies": {
+    "core-util-is": "^1.0.2",
+    "express": "^4.17.1",
+    "redis": "^2.8.0",
+    "require-dir": "^1.2.0"
+  },
+  "scripts": {
+    "start": "node app.js"
+  }
+}
