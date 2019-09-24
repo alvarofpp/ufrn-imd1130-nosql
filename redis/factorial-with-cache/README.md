@@ -1,4 +1,4 @@
-# Fatorial with cache
+# Factorial with cache
 Executa o cálculo de fatorial usando o Redis como memória cache para salvar os dados já processados.
 
 ## Rotas
