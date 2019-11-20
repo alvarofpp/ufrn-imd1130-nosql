@@ -3,6 +3,8 @@
 
 [MongoDB site](https://www.mongodb.com/).
 
+----------
+
 Installing MongoDB via Docker.
 ```bash
 docker run -p 27017:27017 --name nosql-mongo -v /home/mongo:/data/ -d mongo
