@@ -5,7 +5,7 @@ A dificuldade em processar esses dados/objetos se dar pela natureza do georrefer
 
 Por causa dessa dificuldade, vários soluções foram desenvolvidas com a finalidade de ajudar nesse processamento. Nesse estudo iremos abordar duas dessas soluções e realizar um comparativo entre elas: MongoDB, que implementa nativamente ferramentas para processar esses dados, e o PostGIS, extensão do banco de dados PostgreSQL.
 
-[Clique aqui para ler o artigo no Medium]().
+[Clique aqui para ler o artigo no Medium](https://medium.com/@alvarofpp/mongodb-vs-postgis-postgresql-50d8c7f9adda?sk=9378553e6fab616c5217e670be6acae5).
 
 ----------
 
